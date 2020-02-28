@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:dnamlOutputParser projectName="Clone9_dnaml_output" xmlns:ns2="ch.irb.IgGenealogicTreeMaker">
+    <GermLine name="UCA9">
+        <dnaSequence>CAGGTGCAGCTGGTGCAGTCTGGGGCTGAGGTGAAGAAGCCTGGGTCCTCGGTGAAGGTCTCCTGCAAGGCTTCTGGAGGCACCTTCAGCAGCTATGCTATCAGCTGGGTGCGACAGGCCCCTGGACAAGGGCTTGAGTGGATGGGAGGGATCATCCCTATCTTTGGTACAGCAAACTACGCACAGAAGTTCCAGGGCAGAGTCACGATTACCGCGGACGAATCCACGAGCACAGCCTACATGGAGCTGAGCAGCCTGAGATCTGAGGACACGGCCGTGTATTACTGTGCGAAGGGGAGTGGTTACCACGTGCGTGACTACTTTGACTACTGGGGCCAGGGAACCCTGGTCACCGTCTCCTCA</dnaSequence>
+        <proteinSequence>QVQLVQSGAEVKKPGSSVKVSCKASGGTFSSYAISWVRQAPGQGLEWMGGIIPIFGTANYAQKFQGRVTITADESTSTAYMELSSLRSEDTAVYYCAKGSGYHVRDYFDYWGQGTLVTVSS</proteinSequence>
+        <level>0</level>
+        <numberOfNucleotidicMutations>0</numberOfNucleotidicMutations>
+        <numberOfAAMutations>0</numberOfAAMutations>
+        <insertionNumber>0</insertionNumber>
+        <deletionNumber>0</deletionNumber>
+        <cdr_fr_regions>75 99 150 174 288 330 363</cdr_fr_regions>
+        <imgtFormatSequence>CAGGTGCAGCTGGTGCAGTCTGGGGCT...GAGGTGAAGAAGCCTGGGTCCTCGGTGAAGGTCTCCTGCAAGGCTTCTGGAGGCACCTTC............AGCAGCTATGCTATCAGCTGGGTGCGACAGGCCCCTGGACAAGGGCTTGAGTGGATGGGAGGGATCATCCCTATC......TTTGGTACAGCAAACTACGCACAGAAGTTCCAG...GGCAGAGTCACGATTACCGCGGACGAATCCACGAGCACAGCCTACATGGAGCTGAGCAGCCTGAGATCTGAGGACACGGCCGTGTATTACTGTGCGAAGGGGAGTGGTTACCACGTGCGTGACTACTTTGACTACTGGGGCCAGGGAACCCTGGTCACCGTCTCCTCA</imgtFormatSequence>
+        <showComment1>true</showComment1>
+        <children>
+            <node name="BP4">
+                <dnaSequence>CAGGTGCAGCTGGTGCAGTCTGGGGCTGAGGTGAAGAAGCCTGGGTCCTCGGTGAAGGTCTCCTGCAAGGCTTCTGGAGGCACCTTCAGAAGCTATGCTATCAGCTGGGTGCGACAGGCCCCTGGACAAGGGCTTGAGTGGATGGGAGGGATCATCGCTATCTTTGGTACAGCAAACTACGCACAGAAGTTCCAGGGCAGAGTCACGATTACCGCGGACGAATCCACGAGCACAGCCTACATGGAGCTGAGCAGCCTGAGATCTGAGGACACGGCCGTGTATTACTGTGCGAAGGGGAGTGGTTACCACGTGCGTGACTACTTTGACTACTGGGGCCAGGGAACCCTGGTCACCGTCTCCTCA</dnaSequence>
+                <proteinSequence>QVQLVQSGAEVKKPGSSVKVSCKASGGTFRSYAISWVRQAPGQGLEWMGGIIAIFGTANYAQKFQGRVTITADESTSTAYMELSSLRSEDTAVYYCAKGSGYHVRDYFDYWGQGTLVTVSS</proteinSequence>
+                <level>1</level>
+                <numberOfNucleotidicMutations>2</numberOfNucleotidicMutations>
+                <mutationsWithParent>,89:C-&gt;A,156:C-&gt;G,</mutationsWithParent>
+                <numberOfAAMutations>2</numberOfAAMutations>
+                <insertionNumber>0</insertionNumber>
+                <deletionNumber>0</deletionNumber>
+                <cdr_fr_regions>75 99 150 174 288 330 363 363</cdr_fr_regions>
+                <imgtFormatSequence>CAGGTGCAGCTGGTGCAGTCTGGGGCT...GAGGTGAAGAAGCCTGGGTCCTCGGTGAAGGTCTCCTGCAAGGCTTCTGGAGGCACCTTC............AGAAGCTATGCTATCAGCTGGGTGCGACAGGCCCCTGGACAAGGGCTTGAGTGGATGGGAGGGATCATCGCTATC......TTTGGTACAGCAAACTACGCACAGAAGTTCCAG...GGCAGAGTCACGATTACCGCGGACGAATCCACGAGCACAGCCTACATGGAGCTGAGCAGCCTGAGATCTGAGGACACGGCCGTGTATTACTGTGCGAAGGGGAGTGGTTACCACGTGCGTGACTACTTTGACTACTGGGGCCAGGGAACCCTGGTCACCGTCTCCTCA</imgtFormatSequence>
+                <showComment1>true</showComment1>
+                <parent>UCA9</parent>
+                <children>
+                    <node name="BP3">
+                        <dnaSequence>CAGGTGCAGCTGGTGCAGTCTGGGGCTGAGGTGAAGAAGCCTGGGTCCTCGGTGAAGGTCTCCTGCAAGGCTTCTGGAGGCATCTTCAGGAGCAATGCTATCAGCTGGGTGCGACAGGCCCCTGGACAAGGGCTTGAGTGGATGGGAGGGATCATCGCTATCTTTGGTACAACAAACTACGCACAGAAGTTCCAGGGCAGAGTCACGATTACCGCGGACGAATCCACGAGCACAGCCTACATGGAGCTGAGCAGCCTGAGATCTGAGGACACGGCCGTGTATTTCTGTGCGAAGGGGAGTGGCTACCACGTGCGTGACTACTTTGACTACTGGGGCCAGGGAACCCTGGTCACCGTCTCCTCA</dnaSequence>
+                        <proteinSequence>QVQLVQSGAEVKKPGSSVKVSCKASGGIFRSNAISWVRQAPGQGLEWMGGIIAIFGTTNYAQKFQGRVTITADESTSTAYMELSSLRSEDTAVYFCAKGSGYHVRDYFDYWGQGTLVTVSS</proteinSequence>
+                        <level>2</level>
+                        <numberOfNucleotidicMutations>6</numberOfNucleotidicMutations>
+                        <mutationsWithParent>,82:C-&gt;T,89:A-&gt;G,93:T-&gt;A,171:G-&gt;A,283:A-&gt;T,302:T-&gt;C,</mutationsWithParent>
+                        <numberOfAAMutations>4</numberOfAAMutations>
+                        <insertionNumber>0</insertionNumber>
+                        <deletionNumber>0</deletionNumber>
+                        <cdr_fr_regions>75 99 150 174 288 330 363 363 363</cdr_fr_regions>
+                        <imgtFormatSequence>CAGGTGCAGCTGGTGCAGTCTGGGGCT...GAGGTGAAGAAGCCTGGGTCCTCGGTGAAGGTCTCCTGCAAGGCTTCTGGAGGCATCTTC............AGGAGCAATGCTATCAGCTGGGTGCGACAGGCCCCTGGACAAGGGCTTGAGTGGATGGGAGGGATCATCGCTATC......TTTGGTACAACAAACTACGCACAGAAGTTCCAG...GGCAGAGTCACGATTACCGCGGACGAATCCACGAGCACAGCCTACATGGAGCTGAGCAGCCTGAGATCTGAGGACACGGCCGTGTATTTCTGTGCGAAGGGGAGTGGCTACCACGTGCGTGACTACTTTGACTACTGGGGCCAGGGAACCCTGGTCACCGTCTCCTCA</imgtFormatSequence>
+                        <showComment1>true</showComment1>
+                        <parent>BP4</parent>
+                        <children>
+                            <node name="FI154">
+                                <dnaSequence>CAGGTGCAGGTGGTGCAGTCTGGGACTGAGGTGAAGAAGCCTGGGTCCTCGGTGAAGGTCTCCTGCAAGGCTTCTGGAGGCCTCTTCAGGAGCAACGCTATTAGCTGGGTGCGACAGGCCCCTGGACAAGGGCTTGAGTGGCTGGGAGGCATCATCGCTATCTTCGGTACATCAAAGTACGCGCAGAAGTTCCAGGGCAGAGTCACGATTACCGCGGACGAATCCACGAGCACAGCCTACATGGAGCTGCGCAGCCTGAGATCTGAGGACACGGCCCTGTATTTCTGTGCGAGGCATAGTGGCTACCATTTTCAATCCTACTTTGACAACTGGGGCCAGGGAAGTCTGGTCACCGTCTCCTCA</dnaSequence>
+                                <proteinSequence>QVQVVQSGTEVKKPGSSVKVSCKASGGLFRSNAISWVRQAPGQGLEWLGGIIAIFGTSKYAQKFQGRVTITADESTSTAYMELRSLRSEDTALYFCARHSGYHFQSYFDNWGQGSLVTVSS</proteinSequence>
+                                <level>3</level>
+                                <numberOfNucleotidicMutations>27</numberOfNucleotidicMutations>
+                                <mutationsWithParent>,9:C-&gt;G,24:G-&gt;A,81:A-&gt;C,95:T-&gt;C,101:C-&gt;T,141:A-&gt;C,149:G-&gt;C,164:T-&gt;C,171:A-&gt;T,176:C-&gt;G,182:A-&gt;G,249:A-&gt;C,276:G-&gt;C,292:A-&gt;G,294:G-&gt;C,295:G-&gt;A,296:G-&gt;T,308:C-&gt;T,309:G-&gt;T,311:G-&gt;T,313:G-&gt;A,314:T-&gt;A,315:G-&gt;T,316:A-&gt;C,327:T-&gt;A,343:C-&gt;G,344:C-&gt;T,</mutationsWithParent>
+                                <numberOfAAMutations>15</numberOfAAMutations>
+                                <insertionNumber>0</insertionNumber>
+                                <deletionNumber>0</deletionNumber>
+                                <cdr_fr_regions>75 99 150 174 288 330 363 363 363 363</cdr_fr_regions>
+                                <imgtFormatSequence>CAGGTGCAGGTGGTGCAGTCTGGGACT...GAGGTGAAGAAGCCTGGGTCCTCGGTGAAGGTCTCCTGCAAGGCTTCTGGAGGCCTCTTC............AGGAGCAACGCTATTAGCTGGGTGCGACAGGCCCCTGGACAAGGGCTTGAGTGGCTGGGAGGCATCATCGCTATC......TTCGGTACATCAAAGTACGCGCAGAAGTTCCAG...GGCAGAGTCACGATTACCGCGGACGAATCCACGAGCACAGCCTACATGGAGCTGCGCAGCCTGAGATCTGAGGACACGGCCCTGTATTTCTGTGCGAGGCATAGTGGCTACCATTTTCAATCCTACTTTGACAACTGGGGCCAGGGAAGTCTGGTCACCGTCTCCTCA</imgtFormatSequence>
+                                <showComment1>true</showComment1>
+                                <parent>BP3</parent>
+                            </node>
+                            <node name="BP2">
+                                <dnaSequence>CAGGTGCAGCTGGTGCAGTCTGGGGCTGAGGTGAAGAAGCCTGGGTCCTCGGTGAAGGTCTCCTGCAAGGCCTCTGGAGGCATCTTCAGGAGCAATGCTATCAGCTGGGTGCGACAGGCCCCTGGACAAGGGCTTGAGTGGATGGGAGGGATCACCGCTATCTTTGGTACAACAAACTACGCACAGAAGTTCCAGGGCAGAGTCACGATTACCGCGGACGAATCCACGAGCACAGTCTACATGGAGCTGAGCAGCCTGAGATCTGAGGACACGGCCGTGTATTTCTGTGCGAAGGGGAGTGGCTACCACGTGCGTGACTACTTTGACCACTGGGGCCAGGGAACCCTGGTCACCGTCTCCTCA</dnaSequence>
+                                <proteinSequence>QVQLVQSGAEVKKPGSSVKVSCKASGGIFRSNAISWVRQAPGQGLEWMGGITAIFGTTNYAQKFQGRVTITADESTSTVYMELSSLRSEDTAVYFCAKGSGYHVRDYFDHWGQGTLVTVSS</proteinSequence>
+                                <level>3</level>
+                                <numberOfNucleotidicMutations>4</numberOfNucleotidicMutations>
+                                <mutationsWithParent>,71:T-&gt;C,154:T-&gt;C,235:C-&gt;T,327:T-&gt;C,</mutationsWithParent>
+                                <numberOfAAMutations>3</numberOfAAMutations>
+                                <insertionNumber>0</insertionNumber>
+                                <deletionNumber>0</deletionNumber>
+                                <cdr_fr_regions>75 99 150 174 288 330 363 363 363 363 363</cdr_fr_regions>
+                                <imgtFormatSequence>CAGGTGCAGCTGGTGCAGTCTGGGGCT...GAGGTGAAGAAGCCTGGGTCCTCGGTGAAGGTCTCCTGCAAGGCCTCTGGAGGCATCTTC............AGGAGCAATGCTATCAGCTGGGTGCGACAGGCCCCTGGACAAGGGCTTGAGTGGATGGGAGGGATCACCGCTATC......TTTGGTACAACAAACTACGCACAGAAGTTCCAG...GGCAGAGTCACGATTACCGCGGACGAATCCACGAGCACAGTCTACATGGAGCTGAGCAGCCTGAGATCTGAGGACACGGCCGTGTATTTCTGTGCGAAGGGGAGTGGCTACCACGTGCGTGACTACTTTGACCACTGGGGCCAGGGAACCCTGGTCACCGTCTCCTCA</imgtFormatSequence>
+                                <showComment1>true</showComment1>
+                                <parent>BP3</parent>
+                                <children>
+                                    <node name="BP1">
+                                        <dnaSequence>CAGGTGCAGCTGGTGCAGTCTGGGGCTGAGGTGAAGAAGCCTGGGTCCTCGGTGAAGGTCTCCTGCAAGGCCTCTGGAGGCATTTTCAGGAACACTGCTATCAGTTGGGTGCGACAGGCCCCTGGACAAGGGCTTGAGTGGATGGGAGGGATCACCGCCATCTTTGGTACAACAAACTACGCACAGAAGTTCCAGGGCAGAGTTTCGATTACCGCGGACGAATCAACGAGCACAGTCTACATGGAGGTGACCAGCCTGAGATCTGAGGACACGGCCGTGTATTTCTGTGCGAGGGGGAGTGGCTACCACGTGCGTGACTACTTTGACCTCTGGGGCCAGGGAACCCTGGTCACCGTCTCCTCA</dnaSequence>
+                                        <proteinSequence>QVQLVQSGAEVKKPGSSVKVSCKASGGIFRNTAISWVRQAPGQGLEWMGGITAIFGTTNYAQKFQGRVSITADESTSTVYMEVTSLRSEDTAVYFCARGSGYHVRDYFDLWGQGTLVTVSS</proteinSequence>
+                                        <level>4</level>
+                                        <numberOfNucleotidicMutations>12</numberOfNucleotidicMutations>
+                                        <mutationsWithParent>,83:C-&gt;T,91:G-&gt;A,94:A-&gt;C,104:C-&gt;T,158:T-&gt;C,203:C-&gt;T,204:A-&gt;T,224:C-&gt;A,246:C-&gt;G,250:G-&gt;C,292:A-&gt;G,328:A-&gt;T,</mutationsWithParent>
+                                        <numberOfAAMutations>7</numberOfAAMutations>
+                                        <insertionNumber>0</insertionNumber>
+                                        <deletionNumber>0</deletionNumber>
+                                        <cdr_fr_regions>75 99 150 174 288 330 363 363 363 363 363 363</cdr_fr_regions>
+                                        <imgtFormatSequence>CAGGTGCAGCTGGTGCAGTCTGGGGCT...GAGGTGAAGAAGCCTGGGTCCTCGGTGAAGGTCTCCTGCAAGGCCTCTGGAGGCATTTTC............AGGAACACTGCTATCAGTTGGGTGCGACAGGCCCCTGGACAAGGGCTTGAGTGGATGGGAGGGATCACCGCCATC......TTTGGTACAACAAACTACGCACAGAAGTTCCAG...GGCAGAGTTTCGATTACCGCGGACGAATCAACGAGCACAGTCTACATGGAGGTGACCAGCCTGAGATCTGAGGACACGGCCGTGTATTTCTGTGCGAGGGGGAGTGGCTACCACGTGCGTGACTACTTTGACCTCTGGGGCCAGGGAACCCTGGTCACCGTCTCCTCA</imgtFormatSequence>
+                                        <showComment1>true</showComment1>
+                                        <parent>BP2</parent>
+                                        <children>
+                                            <node name="FI469">
+                                                <dnaSequence>CAGGTGCAGCTGGTGCAGTCTGGGGCTGAGGTGAAGAAGCCTGGGTCCTCGGTGAAGGTCTCCTGCAAGGCCTCTGGAGGCATTTTGAGGAACGTTGCTATCAGTTGGGTCCGACAGGCCCCTGGACAAGGGCTTGAGTGGCTGGGAGGGATCACCGCCATGTTTGGTACAACAAACTACGCACAGAAGTTCCAGGACAGACTATCGATTACCGCGGACGAGTCAACGAGCACAGTCTACATGGAGGTGACCAGTCTGAGATCTGACGACACGGCCGTATATTTCTGTGCGAGGGGGAGCGGCTACCACGTGACTGACTACTTTGACCTCTGGGGCCAGGGAACCCTGATCACCGTCTCCTCA</dnaSequence>
+                                                <proteinSequence>QVQLVQSGAEVKKPGSSVKVSCKASGGILRNVAISWVRQAPGQGLEWLGGITAMFGTTNYAQKFQDRLSITADESTSTVYMEVTSLRSDDTAVYFCARGSGYHVTDYFDLWGQGTLITVSS</proteinSequence>
+                                                <level>5</level>
+                                                <numberOfNucleotidicMutations>17</numberOfNucleotidicMutations>
+                                                <mutationsWithParent>,86:C-&gt;G,93:A-&gt;G,94:C-&gt;T,110:G-&gt;C,141:A-&gt;C,161:C-&gt;G,196:G-&gt;A,201:G-&gt;C,203:T-&gt;A,221:A-&gt;G,254:C-&gt;T,266:G-&gt;C,278:G-&gt;A,299:T-&gt;C,312:C-&gt;A,313:G-&gt;C,348:G-&gt;A,</mutationsWithParent>
+                                                <numberOfAAMutations>9</numberOfAAMutations>
+                                                <insertionNumber>0</insertionNumber>
+                                                <deletionNumber>0</deletionNumber>
+                                                <cdr_fr_regions>75 99 150 174 288 330 363 363 363 363 363 363 363</cdr_fr_regions>
+                                                <imgtFormatSequence>CAGGTGCAGCTGGTGCAGTCTGGGGCT...GAGGTGAAGAAGCCTGGGTCCTCGGTGAAGGTCTCCTGCAAGGCCTCTGGAGGCATTTTG............AGGAACGTTGCTATCAGTTGGGTCCGACAGGCCCCTGGACAAGGGCTTGAGTGGCTGGGAGGGATCACCGCCATG......TTTGGTACAACAAACTACGCACAGAAGTTCCAG...GACAGACTATCGATTACCGCGGACGAGTCAACGAGCACAGTCTACATGGAGGTGACCAGTCTGAGATCTGACGACACGGCCGTATATTTCTGTGCGAGGGGGAGCGGCTACCACGTGACTGACTACTTTGACCTCTGGGGCCAGGGAACCCTGATCACCGTCTCCTCA</imgtFormatSequence>
+                                                <showComment1>true</showComment1>
+                                                <parent>BP1</parent>
+                                            </node>
+                                            <node name="FI325">
+                                                <dnaSequence>CAGGTGCAGCTGGTGCAGTCTGGGGCTGAGGTGAAGAAGCCTGGGTCCTCGGTGAAGGTCTCCTGCAGGGCCTCTGGAGGCATTTTCAGGAACACTGCTATCAGTTGGGTGCGACAGGCCCCTGGACAAGGGCTTGAGTGGATGGGAGGGATCACCGCCCTCTTTGGTACAACAAACTACGCACAGAAGTTCCAGGGCAGAGTTTCGATTACCGCGGACGAATCAACGAACACAGTCTACATGGAGGTGACCAGCCTGAGATCTGAGGACACGGCCGTGTATTTCTGTGCGAGGGGGAGTGGTTACCACGTGCGTGACTACTTTGACCTCTGGGGCCAGGGAGCCCTGGTCACCGTCTCCTCA</dnaSequence>
+                                                <proteinSequence>QVQLVQSGAEVKKPGSSVKVSCRASGGIFRNTAISWVRQAPGQGLEWMGGITALFGTTNYAQKFQGRVSITADESTNTVYMEVTSLRSEDTAVYFCARGSGYHVRDYFDLWGQGALVTVSS</proteinSequence>
+                                                <level>5</level>
+                                                <numberOfNucleotidicMutations>5</numberOfNucleotidicMutations>
+                                                <mutationsWithParent>,67:A-&gt;G,159:A-&gt;C,229:G-&gt;A,302:C-&gt;T,342:A-&gt;G,</mutationsWithParent>
+                                                <numberOfAAMutations>4</numberOfAAMutations>
+                                                <insertionNumber>0</insertionNumber>
+                                                <deletionNumber>0</deletionNumber>
+                                                <cdr_fr_regions>75 99 150 174 288 330 363 363 363 363 363 363 363 363</cdr_fr_regions>
+                                                <imgtFormatSequence>CAGGTGCAGCTGGTGCAGTCTGGGGCT...GAGGTGAAGAAGCCTGGGTCCTCGGTGAAGGTCTCCTGCAGGGCCTCTGGAGGCATTTTC............AGGAACACTGCTATCAGTTGGGTGCGACAGGCCCCTGGACAAGGGCTTGAGTGGATGGGAGGGATCACCGCCCTC......TTTGGTACAACAAACTACGCACAGAAGTTCCAG...GGCAGAGTTTCGATTACCGCGGACGAATCAACGAACACAGTCTACATGGAGGTGACCAGCCTGAGATCTGAGGACACGGCCGTGTATTTCTGTGCGAGGGGGAGTGGTTACCACGTGCGTGACTACTTTGACCTCTGGGGCCAGGGAGCCCTGGTCACCGTCTCCTCA</imgtFormatSequence>
+                                                <showComment1>true</showComment1>
+                                                <parent>BP1</parent>
+                                            </node>
+                                        </children>
+                                    </node>
+                                    <node name="FI225">
+                                        <dnaSequence>CAGGTGCAGCTGGTGCAGTCTGGGGCTGAGGTGAAGAAGCCTGGGTCCTCGGTGAGGGTCTCCTGCAAGGCCTCTGGAGGCATCTTCAGAAGTAATGCTCTCAGCTGGGTGCGACAGGCCCCTGGACAAGGGCTTGAGTATTTGGGAGGGATCACCGCTATCTTTGGTACTACCACCTACGCACAGAAGTTCCAGGGCAGAGTCACGATTACCGCGGACGAATCCACGAGCACCGTCTACATGGACCTGAGCAGCCTGAGATCTGACGACACGGCCGTATATTTCTGTGCGAAGGGGAGTGGCTACCACGTGCGTGACCATTTTGACGACTGGGGCCAGGGAACCCTGGTCATCGTCTCCTCA</dnaSequence>
+                                        <proteinSequence>QVQLVQSGAEVKKPGSSVRVSCKASGGIFRSNALSWVRQAPGQGLEYLGGITAIFGTTTYAQKFQGRVTITADESTSTVYMDLSSLRSDDTAVYFCAKGSGYHVRDHFDDWGQGTLVIVSS</proteinSequence>
+                                        <level>4</level>
+                                        <numberOfNucleotidicMutations>18</numberOfNucleotidicMutations>
+                                        <mutationsWithParent>,55:A-&gt;G,89:G-&gt;A,92:C-&gt;T,99:A-&gt;C,139:G-&gt;A,140:G-&gt;T,141:A-&gt;T,170:A-&gt;T,173:A-&gt;C,175:A-&gt;C,233:A-&gt;C,245:G-&gt;C,266:G-&gt;C,278:G-&gt;A,318:T-&gt;C,320:C-&gt;T,327:C-&gt;G,352:C-&gt;T,</mutationsWithParent>
+                                        <numberOfAAMutations>10</numberOfAAMutations>
+                                        <insertionNumber>0</insertionNumber>
+                                        <deletionNumber>0</deletionNumber>
+                                        <cdr_fr_regions>75 99 150 174 288 330 363 363 363 363 363 363 363 363 363</cdr_fr_regions>
+                                        <imgtFormatSequence>CAGGTGCAGCTGGTGCAGTCTGGGGCT...GAGGTGAAGAAGCCTGGGTCCTCGGTGAGGGTCTCCTGCAAGGCCTCTGGAGGCATCTTC............AGAAGTAATGCTCTCAGCTGGGTGCGACAGGCCCCTGGACAAGGGCTTGAGTATTTGGGAGGGATCACCGCTATC......TTTGGTACTACCACCTACGCACAGAAGTTCCAG...GGCAGAGTCACGATTACCGCGGACGAATCCACGAGCACCGTCTACATGGACCTGAGCAGCCTGAGATCTGACGACACGGCCGTATATTTCTGTGCGAAGGGGAGTGGCTACCACGTGCGTGACCATTTTGACGACTGGGGCCAGGGAACCCTGGTCATCGTCTCCTCA</imgtFormatSequence>
+                                        <showComment1>true</showComment1>
+                                        <parent>BP2</parent>
+                                    </node>
+                                </children>
+                            </node>
+                        </children>
+                    </node>
+                    <node name="FI353">
+                        <dnaSequence>CAGGTGCAGCTGGTGCAGTCTGGGGCTGAGATAAAGAAGCCTGGGTCCTCGGTGAAAGTCTCCTGCAGGGCTTCTGGAACCACCTTCAGAAGCTTTGCTATCAGCTGGGTGCGACAGGCCCCTGGACAAGGACTTGAGTACATGGGAGGGGTCATCGCTCTCTTTGGCACAGCAAACTACGCACAGAAGTTCCAGGGCAGAGTCACGATTACCGCGGACGAATCCACGAACACAGCCTACATGGAGCTGAGCAGCCTGAGATCTGAGGACACGGCCGTCTACTACTGTGCGAAGGGGAGTGGTTACCACGTGCGTGACTATTTTGACTACTGGGGCCAGGGAACCCTGGTCACCGTCTCCTCA</dnaSequence>
+                        <proteinSequence>QVQLVQSGAEIKKPGSSVKVSCRASGTTFRSFAISWVRQAPGQGLEYMGGVIALFGTANYAQKFQGRVTITADESTNTAYMELSSLRSEDTAVYYCAKGSGYHVRDYFDYWGQGTLVTVSS</proteinSequence>
+                        <level>2</level>
+                        <numberOfNucleotidicMutations>17</numberOfNucleotidicMutations>
+                        <mutationsWithParent>,30:G-&gt;A,32:G-&gt;A,56:G-&gt;A,67:A-&gt;G,78:G-&gt;A,79:G-&gt;C,94:A-&gt;T,131:G-&gt;A,139:G-&gt;A,140:G-&gt;C,150:A-&gt;G,159:A-&gt;C,167:T-&gt;C,229:G-&gt;A,278:G-&gt;C,281:T-&gt;C,320:C-&gt;T,</mutationsWithParent>
+                        <numberOfAAMutations>8</numberOfAAMutations>
+                        <insertionNumber>0</insertionNumber>
+                        <deletionNumber>0</deletionNumber>
+                        <cdr_fr_regions>75 99 150 174 288 330 363 363 363 363 363 363 363 363 363 363</cdr_fr_regions>
+                        <imgtFormatSequence>CAGGTGCAGCTGGTGCAGTCTGGGGCT...GAGATAAAGAAGCCTGGGTCCTCGGTGAAAGTCTCCTGCAGGGCTTCTGGAACCACCTTC............AGAAGCTTTGCTATCAGCTGGGTGCGACAGGCCCCTGGACAAGGACTTGAGTACATGGGAGGGGTCATCGCTCTC......TTTGGCACAGCAAACTACGCACAGAAGTTCCAG...GGCAGAGTCACGATTACCGCGGACGAATCCACGAACACAGCCTACATGGAGCTGAGCAGCCTGAGATCTGAGGACACGGCCGTCTACTACTGTGCGAAGGGGAGTGGTTACCACGTGCGTGACTATTTTGACTACTGGGGCCAGGGAACCCTGGTCACCGTCTCCTCA</imgtFormatSequence>
+                        <showComment1>true</showComment1>
+                        <parent>BP4</parent>
+                    </node>
+                </children>
+            </node>
+        </children>
+    </GermLine>
+    <previousBPNames></previousBPNames>
+    <isDNA>true</isDNA>
+    <hasReadsInId>false</hasReadsInId>
+</ns2:dnamlOutputParser>
