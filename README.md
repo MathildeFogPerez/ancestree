@@ -1,7 +1,7 @@
 
-AncesTree: a dnaml immunoglobulin lineage tree visualizer
+AncesTree: an interactive immunoglobulin lineage tree visualizer
 =============
-AncesTree is a Graphic User Interface (GUI) that displays immunoglobulin lineage trees processed by dnaml from PHYLIP package.
+AncesTree is a Graphic User Interface (GUI) that displays immunoglobulin lineage trees processed by dnaml from PHYLIP package or by IgPhyML (https://igphyml.readthedocs.io/en/latest/overview.html).
 
 AncesTree is distributed as a cross-platform application (jar file) that can run under Windows, Linux and Mac OS. 
 
@@ -20,11 +20,9 @@ It only needs Java Runtime Environment (JRE) 12 or higher (https://www.oracle.co
 #     
   
 - **Loading the file of interest.**
-    To run AncesTree, a dnaml output file from Phylip package is needed:  
-    It is a text file that contains a phylogenic tree and the theoretical reconstructed sequences. 
-    
-    As an option, a fasta file can be loaded to get all AncesTree features available. 
-    The file should contain the UCA (Unmutated Common Ancestor) sequence in IMGT format and its related CDR/FR regions boundaries.  
+    To run AncesTree, there are two options:
+    - a dnaml output file from Phylip package is needed, it is a text file that contains a phylogenic tree and the theoretical reconstructed sequences. Optionally , a fasta file can be loaded to get all AncesTree features available.The file should contain the UCA (Unmutated Common Ancestor) sequence in IMGT format and its related CDR/FR regions boundaries.  
+    - a change-O in AIRR format file (https://changeo.readthedocs.io/en/stable/overview.html) and its related IgPhyML files (tab and fasta).
    
 #     
    
