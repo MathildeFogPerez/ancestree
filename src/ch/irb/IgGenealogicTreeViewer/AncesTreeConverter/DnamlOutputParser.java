@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 - Mathilde Foglierini Perez
+ * Copyright 2020 - Mathilde Foglierini Perez
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
@@ -696,8 +696,7 @@ public class DnamlOutputParser {
         setIgTree_xml(System.getProperty("user.dir") + fs + "output" + fs + projectName + fs + projectName + ".xml");
 
         // create JAXB context and instantiate marshaller
-
-        JAXBContext context = JAXBContext.newInstance(DnamlOutputParser.class); //
+        JAXBContext context = JAXBContext.newInstance(InputParser.class); //
         Marshaller m = context.createMarshaller();
         m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
 

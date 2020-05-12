@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 - Mathilde Foglierini Perez
+ * Copyright 2020 - Mathilde Foglierini Perez
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
@@ -674,7 +674,7 @@ public class Node extends NodeObject {
      * will generate all the latest information needed for the XML file.
      */
     public void setInformationForTree() {
-        logger.debug("Setting info for node " + nodeId + " is root " + isRoot());
+        //logger.debug("Setting info for node " + nodeId + " is root " + isRoot());
         String cellInformation = "";
         String immunizationInformation = "";
         for (int i = 0; i < relatedIgs.size(); i++) {
@@ -697,6 +697,8 @@ public class Node extends NodeObject {
         if (parent != null) {
             String mutationsWithParent = ",";
             String parentSequence = parent.getSequence();
+            //logger.debug("For Node "+getNodeId()+" we have the parent sequence of parent "+parent.getNodeId());
+            //logger.debug(parentSequence);
             char[] parentSeq = parentSequence.toCharArray();
             char[] seq = sequence.toCharArray();
             int numberOfMutations = 0;

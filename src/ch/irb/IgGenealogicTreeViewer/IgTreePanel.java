@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 - Mathilde Foglierini Perez
+ * Copyright 2020 - Mathilde Foglierini Perez
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
@@ -106,6 +106,11 @@ public class IgTreePanel extends JPanel {
     private double zoomInc = 0.05;
     private NodeGraph centerNode = null;
     private boolean hasReadsInId = false;
+    private ArrayList<Color> ec50Colors = new ArrayList<Color>(Arrays.asList(new Color(204,0,0),
+            new Color(0,76,153),
+            new Color(204,102,0),
+            new Color(0,102,0),
+            new Color(76,0,153)));
 
     public IgTreePanel(IgTreeReader igTreeReader, GetSetCurrentDirectory getSetCurrentDir) {
         logger.debug("IgTreePanel...");
@@ -131,6 +136,7 @@ public class IgTreePanel extends JPanel {
         setLastNodes();// store the information for the last nodes
         // we have the number of the last nodes so we have to set the width
         totalWidth = (lastNodesNumber * (widthOfNodeShape + 25)) + 40;
+        //System.out.println("LastNodesnumber = "+lastNodesNumber+" widthNodeShape = "+ widthOfNodeShape+" total width = "+totalWidth);
         totalHeight = this.getHeight();
         setXPositions();
     }
@@ -498,6 +504,9 @@ public class IgTreePanel extends JPanel {
         // If there are the BASELINe data we display them
         if (clipData != null) {
             int x = (int) totalWidth - 260;
+            if (totalWidth<400){
+                x= 220;
+            }
             int y = 20;
             Font normalFont = new Font("Arial", Font.PLAIN, 20);
             Font smallFont = new Font("Arial", Font.ITALIC, 11);
@@ -855,24 +864,45 @@ public class IgTreePanel extends JPanel {
 
             // print EC50
             if (EC50 != null) {
+                //TODO here allow to write several EC50, with one color different for each
                 rect = fon.getStringBounds(EC50, frc);
                 Rectangle2D rectUnity = smallerFont.getStringBounds(" ng/ml", frc);
                 xString = (int) (x + (widthOfNodeShape / 2) - ((rect.getWidth() + rectUnity.getWidth()) / 2));
                 mult = 2.1f;
-                Color colForEc50 = getColorForEC50(EC50);
-                g.setColor(colForEc50);
-                fontArg = Font.BOLD;
-                // If there is EC50 and comment we write the EC50 more down
                 float toAdd = 0;
                 if (comment != null && node.isShowComment1()) {
                     toAdd = mult * 3;
                 }
                 yString = (int) (y + (mult * (node.getHeight() / 2)) - rect.getHeight() + toAdd);
                 g.setFont(fon);
-                g.drawString(EC50, xString, yString);
-                Rectangle2D r = fon.getStringBounds(EC50, frc);
-                g.setFont(smallerFont);
-                g.drawString(" ng/ml", (int) (xString + r.getWidth()), yString);
+                Color colForEc50 = getColorForEC50(EC50);
+                g.setColor(colForEc50);
+                // If there is EC50 and comment we write the EC50 more down
+                if (!EC50.contains(",")) {
+                    g.drawString(EC50, xString, yString);
+                    Rectangle2D r = fon.getStringBounds(EC50, frc);
+                    g.setFont(smallerFont);
+                    g.drawString(" ng/ml", (int) (xString + r.getWidth()), yString);
+                }
+                else{ //the user entered several EC50, one for each Ag
+                    String[] ec50s = EC50.split(",");
+                    int index=0;
+                    int ec50XString = xString;
+                    for (String ec50: ec50s){
+                        Color color = getColorForSeveralEC50(index);
+                        String toPrint = ec50.trim()+" ";
+                        g.setColor(color);
+                        g.drawString(toPrint, ec50XString, yString);
+                        Rectangle2D r = fon.getStringBounds(toPrint, frc);
+                        ec50XString += r.getWidth();
+                        if (index == ec50s.length-1){
+                            g.setFont(smallerFont);
+                            g.setColor(Color.BLACK);
+                            g.drawString(" ng/ml", ec50XString, yString);
+                        }
+                        index++;
+                    }
+                }
             }
 
             // print comment1
@@ -1143,15 +1173,26 @@ public class IgTreePanel extends JPanel {
      * @return color
      */
     private Color getColorForEC50(String val) {
-        String value = val.replace("~", "");
+        //This is a case of a single value for EC50, if there are several values, we give one color for each
         Color color = Color.black;
-        BigDecimal numb = new BigDecimal(value);
-        if (numb.compareTo(new BigDecimal(20)) <= 0) {
-            color = new Color(198, 0, 0);// red
-        } else if (numb.compareTo(new BigDecimal(200)) <= 0) {
-            color = new Color(0, 138, 0); // green
-        } else if (numb.compareTo(new BigDecimal(200)) > 0) {
-            color = new Color(0, 0, 64);// blue
+        if (!val.contains(",")) {
+            String value = val.replace("~", "");
+            BigDecimal numb = new BigDecimal(value);
+            if (numb.compareTo(new BigDecimal(20)) <= 0) {
+                color = new Color(198, 0, 0);// red
+            } else if (numb.compareTo(new BigDecimal(200)) <= 0) {
+                color = new Color(0, 138, 0); // green
+            } else if (numb.compareTo(new BigDecimal(200)) > 0) {
+                color = new Color(0, 0, 64);// blue
+            }
+        }
+        return color;
+    }
+
+    private Color getColorForSeveralEC50(int index){
+        Color color = Color.BLACK;
+        if (ec50Colors.get(index)!=null){
+            color= ec50Colors.get(index);
         }
         return color;
     }

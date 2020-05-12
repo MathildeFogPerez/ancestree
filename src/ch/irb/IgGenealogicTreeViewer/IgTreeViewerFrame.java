@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 - Mathilde Foglierini Perez
+ * Copyright 2020 - Mathilde Foglierini Perez
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
@@ -53,10 +53,11 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 
+import ch.irb.IgGenealogicTreeViewer.AncesTreeConverter.IgphymlTreeChooserFrame;
 import org.apache.log4j.Logger;
 
 import ch.irb.IgAlignment.IgAlignmentFrame;
-import ch.irb.IgGenealogicTreeViewer.AncesTreeConverter.DnamlOutputParser;
+import ch.irb.IgGenealogicTreeViewer.AncesTreeConverter.InputParser;
 import ch.irb.IgGenealogicTreeViewer.AncesTreeConverter.DnamlTreeChooserFrame;
 import ch.irb.ManageFastaFiles.FastaFormatException;
 import ch.irb.currentDirectory.GetSetCurrentDirectory;
@@ -67,9 +68,9 @@ import ch.irb.saveImages.SaveImageAsPngListener;
 
 /**
  * @author Mathilde This is the main frame of the AncesTree GUI. This frame will allow the user to create
- *         a tree using a dnaml output file or to directly load
- *         a XML file to display his tree of interest. Via this GUI, the user can also save the image of the tree in a
- *         PNG format.
+ * a tree using a dnaml output file or to directly load
+ * a XML file to display his tree of interest. Via this GUI, the user can also save the image of the tree in a
+ * PNG format.
  */
 
 @SuppressWarnings("serial")
@@ -82,7 +83,8 @@ public class IgTreeViewerFrame extends JFrame implements WindowListener {
     private IgTreePanel igTreePanel = null;
     private LegendPanel legendPanel = null;
     private JScrollPane jScrollPane = null;
-    private JMenuItem newTreeItem = new JMenuItem("Create new tree");
+    private JMenuItem newTreeItem = new JMenuItem("Create new tree (dnaml)");
+    private JMenuItem newIgphymlTreeItem = new JMenuItem("Create new tree (IgPhyML)");
     private JMenuItem openItem = new JMenuItem("Load tree");
     private JMenuItem saveTreeItem = new JMenuItem("Save tree");
     private JMenuItem loadCLIPData = new JMenuItem("Load BASELINe data");
@@ -119,7 +121,7 @@ public class IgTreeViewerFrame extends JFrame implements WindowListener {
         }
         this.setTitle("AncesTree");
         if (isDnamlTree) {
-            this.setTitle("AncesTree (dnaml tree explorer)");
+            this.setTitle("AncesTree (ig tree explorer)");
         }
         this.setSize(700, 900);
         this.setLocationRelativeTo(null);
@@ -134,6 +136,8 @@ public class IgTreeViewerFrame extends JFrame implements WindowListener {
         JMenu file = new JMenu("Menu");
         file.add(newTreeItem);
         newTreeItem.addActionListener(new CreateNewTreeListener());
+        file.add(newIgphymlTreeItem);
+        newIgphymlTreeItem.addActionListener(new CreateNewIgphymlTreeListener());
         file.add(openItem);
         saveTreeItem.setEnabled(false);
         file.add(saveTreeItem);
@@ -185,7 +189,7 @@ public class IgTreeViewerFrame extends JFrame implements WindowListener {
             igTreeReader = new IgTreeReader(xmlFilePath, isDnamlTree);
             igTreePanel = new IgTreePanel(igTreeReader, getSetCurrentDir);
             legendPanel.setColorByYear(igTreePanel.getColorByYear());
-            String title = "AncesTree (dnaml tree viewer)              ";
+            String title = "AncesTree (ig tree viewer)              ";
             if (!isDnamlTree) {
                 title = "AncesTree              ";
             }
@@ -233,6 +237,14 @@ public class IgTreeViewerFrame extends JFrame implements WindowListener {
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
+        } catch (JAXBException e) {
+            JOptionPane.showMessageDialog(new JFrame(), "The XML file you loaded was not processed by dnaml.",
+                    "Wrong XML file", JOptionPane.ERROR_MESSAGE);
+            return;
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(new JFrame(), e.getMessage(),
+                    "Tree too big", JOptionPane.ERROR_MESSAGE);
+            return;
         }
 
     }
@@ -269,6 +281,12 @@ public class IgTreeViewerFrame extends JFrame implements WindowListener {
             igTreeReader = new IgTreeReader(newXMLFile, isDnamlTree);
         } catch (FileNotFoundException e1) {
             e1.printStackTrace();
+        } catch (JAXBException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(new JFrame(), e.getMessage(),
+                    "Tree too big", JOptionPane.ERROR_MESSAGE);
+            return;
         }
         if (jScrollPane != null) {
             jScrollPane.remove(igTreePanel);
@@ -355,6 +373,20 @@ public class IgTreeViewerFrame extends JFrame implements WindowListener {
 
     }
 
+    private class CreateNewIgphymlTreeListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent arg0) {
+            try {
+                @SuppressWarnings("unused")
+                IgphymlTreeChooserFrame dnamlTreeChooserFrame = new IgphymlTreeChooserFrame(igTreeViewerFrame);
+            } catch (FastaFormatException e) {
+                e.printStackTrace();
+            }
+        }
+
+    }
+
     private class SaveTreeListener implements ActionListener {
 
         @Override
@@ -367,10 +399,10 @@ public class IgTreeViewerFrame extends JFrame implements WindowListener {
     private void saveTree() {
         try {
             String tmpFilePath = xmlFilePath + "_TMP.xml";
-            JAXBContext context = JAXBContext.newInstance(DnamlOutputParser.class);
+            JAXBContext context = JAXBContext.newInstance(InputParser.class);
             Unmarshaller um = context.createUnmarshaller();
             FileReader fileReader = new FileReader(xmlFilePath);
-            DnamlOutputParser igTreeMaker = (DnamlOutputParser) um.unmarshal(fileReader);
+            InputParser igTreeMaker = (InputParser) um.unmarshal(fileReader);
             // Modify the Node into IgTreeMaker, if the user add the EC 50
             ArrayList<NodeGraph> nodeGraphs = igTreePanel.getAllNodeGraphs();
             Node rootNode = igTreeMaker.getRootNode();

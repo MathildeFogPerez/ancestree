@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 - Mathilde Foglierini Perez
+ * Copyright 2020 - Mathilde Foglierini Perez
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
@@ -179,18 +179,19 @@ public class NodeFrame extends JFrame {
         JLabel EC50Label = new JLabel("EC 50 (ng/ml): ");
         String text = ec50Value;
         if (text == null) {
-            text = "Enter the EC 50 here";
-            ec50Field.setFont(new Font("TimesRoman", Font.ITALIC, 14));
+            text = "Enter the EC 50 value(s) here";
+            ec50Field.setFont(new Font("TimesRoman", Font.ITALIC, 11));
         }
         ec50Field.setText(text);
 
         EC50Label.setLabelFor(ec50Field);
+        EC50Label.setToolTipText("If you want to enter several values, separate them by a comma");
 
         ec50Field.addMouseListener(new MouseListener() {
 
             // we want to delete the text "Enter you EC 50 here" when the user wants to enter a value
             public void mouseReleased(MouseEvent arg0) {
-                if (ec50Field.getText().equals("Enter the EC 50 here")) {
+                if (ec50Field.getText().equals("Enter the EC 50 value(s) here")) {
                     ec50Field.setText("");
                 }
             }
@@ -317,20 +318,27 @@ public class NodeFrame extends JFrame {
 
             // First we check if the user set an EC50
             String input = ec50Field.getText();
-            if (!input.equals("Enter the EC 50 here")) {
+            if (!input.equals("Enter the EC 50 value(s) here")) {
                 boolean hasDeletedEc50 = false;
                 if (input.equals("")) { // finally the user doesnt want to set the EC 50
                     node.setEC50(null);
                     hasDeletedEc50 = true;
                 }
                 if (!hasDeletedEc50) {
-                    try {
-                        String in = input.replace("~", "");
-                        new java.math.BigDecimal(in);
-                    } catch (NumberFormatException ex) {
-                        JOptionPane.showMessageDialog(frame, "The EC 50 value you entered is not a valid number.",
-                                "Wrong EC 50 value", JOptionPane.ERROR_MESSAGE);
-                        return;
+                    //HERE allow a comma, to add different EC50 values, one color for each
+                    if (input.contains(",")){
+                        JOptionPane.showMessageDialog(frame, "You entered different EC50values, they will appear" +
+                                        " in different colors.",
+                                "Different EC 50 values", JOptionPane.WARNING_MESSAGE);
+                    }else { //check that is a a number, otherwise send a error message
+                        try {
+                            String in = input.replace("~", "");
+                            new java.math.BigDecimal(in);
+                        } catch (NumberFormatException ex) {
+                            JOptionPane.showMessageDialog(frame, "The EC 50 value you entered is not a valid number.",
+                                    "Wrong EC 50 value", JOptionPane.ERROR_MESSAGE);
+                            return;
+                        }
                     }
                     node.setEC50(input);
                 }

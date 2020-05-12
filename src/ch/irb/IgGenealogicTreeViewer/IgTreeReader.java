@@ -1,5 +1,5 @@
 /*
-   Copyright 2019 - Mathilde Foglierini Perez
+   Copyright 2020 - Mathilde Foglierini Perez
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
@@ -28,9 +28,10 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 
+import ch.irb.IgGenealogicTreeViewer.AncesTreeConverter.InputParser;
 import org.apache.log4j.Logger;
 
-import ch.irb.IgGenealogicTreeViewer.AncesTreeConverter.DnamlOutputParser;
+import ch.irb.IgGenealogicTreeViewer.AncesTreeConverter.InputParser;
 import ch.irb.nodes.Node;
 import ch.irb.nodes.NodeGraph;
 
@@ -38,11 +39,11 @@ import static java.lang.Integer.parseInt;
 
 /**
  * @author Mathilde This class is used to read the XML file and to create
- *         NodeGraph objects according to this input file. The only difference
- *         with the IgTreeMaker is that a NodeGraph has only ONE id and can have
- *         duplicated nodes. These duplicated nodes will be only displayed in
- *         the GUI, only the "top" node will have all the features of a
- *         GraphNode (the mutations with its parent etc..)
+ * NodeGraph objects according to this input file. The only difference
+ * with the IgTreeMaker is that a NodeGraph has only ONE id and can have
+ * duplicated nodes. These duplicated nodes will be only displayed in
+ * the GUI, only the "top" node will have all the features of a
+ * GraphNode (the mutations with its parent etc..)
  */
 public class IgTreeReader {
     static Logger logger = Logger.getLogger(IgTreeReader.class);
@@ -61,35 +62,23 @@ public class IgTreeReader {
     private TreeMap<Integer, ArrayList<NodeGraph>> fromLevelToNodes = new TreeMap<>();
     private ArrayList<Integer> years = new ArrayList<>();
 
-    public IgTreeReader(String xmlFilePath, boolean isDnamlTree) throws FileNotFoundException {
+    public IgTreeReader(String xmlFilePath, boolean isDnamlTree) throws JAXBException, Exception {
         this.xmlFilePath = xmlFilePath;
         if (isDnamlTree) {
-            try {
-                readAndProcessTreeDnaml();
-            } catch (JAXBException e) {
-                JOptionPane.showMessageDialog(new JFrame(), "The XML file you loaded was not processed by dnaml.",
-                        "Wrong XML file", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
+            readAndProcessTreeDnaml();
         } else {
-            try {
-                readAndProcessTreeAncesTree();
-            } catch (JAXBException e) {
-                JOptionPane.showMessageDialog(new JFrame(), "The XML file you loaded was not processed by AncesTree.",
-                        "Wrong XML file", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
+            readAndProcessTreeAncesTree();
         }
     }
 
-    public void readAndProcessTreeDnaml() throws JAXBException, FileNotFoundException {
-        //Before 2016: IgTreeMaker.class
-        JAXBContext context = JAXBContext.newInstance(DnamlOutputParser.class);
+    public void readAndProcessTreeDnaml() throws Exception {
+        //Before 2016: IgTreeMaker.class before april 2020 DnamlOutputParser.class
+        JAXBContext context = JAXBContext.newInstance(InputParser.class);
         Unmarshaller um = context.createUnmarshaller();
         // logger.debug("XML file path is: " + xmlFilePath);
         FileReader fileReader = new FileReader(xmlFilePath);
-        //Before 2016: IgTreeMaker
-        DnamlOutputParser dnamlParser = (DnamlOutputParser) um.unmarshal(fileReader);
+        //Before 2016: IgTreeMaker, before april 2020 DnamlOutputParser
+        InputParser dnamlParser = (InputParser) um.unmarshal(fileReader);
         this.projectName = dnamlParser.getProjectName();
         this.rootNode = dnamlParser.getRootNode();
         this.previousBPNames = dnamlParser.getPreviousBPNames();
@@ -104,12 +93,12 @@ public class IgTreeReader {
     /*
      * Not used anymore (from 2016), but to keep in case
      */
-    public void readAndProcessTreeAncesTree() throws JAXBException, FileNotFoundException {
-        JAXBContext context = JAXBContext.newInstance(DnamlOutputParser.class);
+    public void readAndProcessTreeAncesTree() throws Exception {
+        JAXBContext context = JAXBContext.newInstance(InputParser.class);
         Unmarshaller um = context.createUnmarshaller();
         // logger.debug("XML file path is: " + xmlFilePath);
         FileReader fileReader = new FileReader(xmlFilePath);
-        DnamlOutputParser igTreeMaker = (DnamlOutputParser) um.unmarshal(fileReader);
+        InputParser igTreeMaker = (InputParser) um.unmarshal(fileReader);
         this.projectName = igTreeMaker.getProjectName();
         this.rootNode = igTreeMaker.getRootNode();
         this.previousBPNames = igTreeMaker.getPreviousBPNames();
@@ -120,11 +109,17 @@ public class IgTreeReader {
         setChildrenPosition(); // set the x position for the nodes
     }
 
-    public void createANodeGraph(Node node, boolean isRoot) {
+    public void createANodeGraph(Node node, boolean isRoot) throws Exception {
+        //BUG fixed the 07.05.20 in the case of big tree (>500 igs) different BPs can have the same sequence with an Ig
+        // BUT be at different place in the tree
+        if (fromIdToNodeGraph.containsKey(node.getNodeId())) {
+            throw new Exception("Something wrong with this tree: some BP/Ig have the same sequences in different nodes " +
+                    "in the tree but they can not be collapsed.");
+        }
         NodeGraph nodeGraph = new NodeGraph();
         nodeGraph.setRoot(isRoot);
         nodeGraph.setDNA(isDNA());
-        logger.info("Create a nodegraph for " + node.getNodeId() + " isDNA " + isDNA());
+        //logger.info("Create a nodegraph for " + node.getNodeId() + " isDNA " + isDNA());
         if (node.getNodeId().matches("BP.*")) {
             nodeGraph.setBP(true);
         }
@@ -314,7 +309,7 @@ public class IgTreeReader {
     public void setChildrenForGraphNode(Node node) { // we also set the parent
         if (node.getChildrenForXmlFile() != null) {
             String nodeId = node.getNodeId();
-            // logger.debug("Processing nodeId " + nodeId);
+            //logger.debug("Processing GRAPH NODE nodeId " + nodeId);
             String[] nodeIds = nodeId.split(",");
             if (nodeIds.length > 1) {
                 nodeId = nodeIds[0];
@@ -330,7 +325,7 @@ public class IgTreeReader {
                     childId = ids[0];
                 }
                 NodeGraph childGraph = fromIdToNodeGraph.get(childId);
-                // logger.debug("childId is " + childId);
+                //logger.debug("childId is " + childId);
                 // logger.debug("childGraph is " + childGraph.toString());
                 childrenGraph.add(childGraph);
                 childGraph.setParent(nodeGraph);

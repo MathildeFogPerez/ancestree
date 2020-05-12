@@ -1,4 +1,4 @@
-/*Copyright 2019 - Mathilde Foglierini Perez
+/*Copyright 2020 - Mathilde Foglierini Perez
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
@@ -68,6 +68,7 @@ public class NodesSorting {
     }
 
     private void setChildrenOrder(Node node) {
+        //System.out.println("Set Children for "+node.getNodeId());
         ArrayList<Node> children = node.getChildren();
         TreeMap<Integer, ArrayList<Node>> igChildren = new TreeMap<Integer, ArrayList<Node>>();
         TreeMap<Integer, ArrayList<Node>> bpChildren = new TreeMap<Integer, ArrayList<Node>>();

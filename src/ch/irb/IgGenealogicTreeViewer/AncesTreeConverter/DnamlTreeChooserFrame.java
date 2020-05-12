@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 - Mathilde Foglierini Perez
+ * Copyright 2020 - Mathilde Foglierini Perez
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
@@ -57,7 +57,7 @@ public class DnamlTreeChooserFrame extends JFrame implements ActionListener {
     private JButton loadIMGTFormatButton = new JButton("Load IMGT info");
     private JButton runButton = new JButton("RUN");
     private JCheckBox checkBoxNGS = new JCheckBox("NGS data: number of reads are in Ig ID");
-    private Font font = new Font("Dialog", Font.PLAIN, 17);
+    private Font font = new Font("Dialog", Font.PLAIN, 15);
 
     public static void main(String[] args) {
         try {
@@ -188,7 +188,7 @@ public class DnamlTreeChooserFrame extends JFrame implements ActionListener {
     private void launchParser() throws FastaFormatException {
         try {
             @SuppressWarnings("unused")
-            DnamlOutputParser parser = new DnamlOutputParser(dnamlFile, imgtFile, igTreeViewerFrame, hasReadsInId);
+            InputParser parser = new InputParser(dnamlFile, imgtFile, igTreeViewerFrame, hasReadsInId);
         } catch (IOException e) {
             e.printStackTrace();
         } catch (JAXBException e) {

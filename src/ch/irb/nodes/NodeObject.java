@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 - Mathilde Foglierini Perez
+ * Copyright 2020 - Mathilde Foglierini Perez
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
@@ -502,7 +502,7 @@ public class NodeObject {
     public int compareTwoProteinSequences(String protSequence1, String protSequence2) {
         int numberOfMutations = 0;
         if (protSequence1.length() != protSequence2.length()) {
-            logger.warn("!!!!!!!!!!!! BE CAREFUL, these 2 protein sequences dont have the same lengt!!");
+            logger.error("!!!!!!!!!!!! BE CAREFUL, these 2 protein sequences dont have the same lengt!!");
             return 0;
         }
         for (int i = 0; i < protSequence1.length(); i++) {
