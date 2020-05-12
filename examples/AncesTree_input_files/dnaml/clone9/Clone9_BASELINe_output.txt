@@ -1,0 +1,12 @@
+Type	ID	Observed_CDR_R	Observed_CDR_S	Observed_FWR_R	Observed_FWR_S	Expected_CDR_R	Expected_CDR_S	Expected_FWR_R	Expected_FWR_S	Focused_Sigma_CDR	Focused_CIlower_CDR	Focused_CIupper_CDR	Focused_Sigma_FWR	Focused_CIlower_FWR	Focused_CIupper_FWR	Focused_P_CDR	Focused_P_FWR
+Group	All sequences combined	NA	NA	NA	NA	NA	NA	NA	NA	1.26	0.63	2.03	-0.833	-1.41	-0.29	3.79e-06	-0.00212
+Germline	UCA9	NA	NA	NA	NA	NA	NA	NA	NA	1.26	0.63	2.03	-0.833	-1.41	-0.29	3.79e-06	-0.00212
+Sequence	BP4	2	0	0	0	0.184	0.061	0.561	0.194	2.77	-0.43	8.04	  NA	  NA	  NA	0.0501	  NA
+Sequence	BP3	5	0	0	0	0.184	0.061	0.561	0.194	3.11	0.61	7.17	  NA	  NA	  NA	0.00383	  NA
+Sequence	FI154	6	2	5	3	0.184	0.061	0.561	0.194	0.497	-0.66	1.65	-0.79	-2.01	 0.4	0.195	-0.0958
+Sequence	BP2	6	0	1	1	0.184	0.061	0.561	0.194	1.89	0.24	3.98	-0.79	-3.48	1.87	0.0103	-0.262
+Sequence	BP1	8	2	4	4	0.184	0.061	0.561	0.194	0.598	-0.44	1.64	-1.17	-2.44	0.02	0.124	-0.0276
+Sequence	FI469	10	2	7	7	0.184	0.061	0.561	0.194	0.427	-0.47	1.31	-1.03	-2.03	-0.09	0.169	-0.0173
+Sequence	FI325	9	2	6	4	0.184	0.061	0.561	0.194	0.71	-0.3	1.73	-0.79	-1.91	 0.3	0.0794	-0.0778
+Sequence	FI225	6	3	7	2	0.184	0.061	0.561	0.194	0.497	-0.66	1.65	-0.474	-1.59	0.65	0.195	-0.197
+Sequence	FI353	7	1	4	3	0.184	0.061	0.561	0.194	0.848	-0.32	2.07	-0.79	-2.15	0.54	0.0747	-0.119
