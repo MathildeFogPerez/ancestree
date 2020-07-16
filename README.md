@@ -68,7 +68,7 @@ The [JExcel](http://www.andykhan.com/jexcelapi/) API is  distributed under the [
 
 AncesTree: an interactive immunoglobulin lineage tree visualizer.
 Mathilde Foglierini, Leontios Pappas, Antonio Lanzavecchia, Davide Corti, Laurent Perez.
-bioRxiv 2020.02.17.952465; doi: https://doi.org/10.1101/2020.02.17.952465
+PLoS Comput Biol. 2020 Jul 10;16(7):e1007731. [DOI: 10.1371/journal.pcbi.1007731] (https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1007731)
 
 ### CONTACT ###
 
