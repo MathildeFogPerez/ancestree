@@ -31,10 +31,20 @@ public class IgPhyMLParser {
         BufferedReader fileReader = new BufferedReader(new FileReader(igPhyMLFile.getPath()));
         String line;
         int index=0;
+        int tree_index=0;
         while ((line = fileReader.readLine()) != null) {
+            String[] cells = line.split("\t");
+            if (index==0){
+                int i=0;
+                for (String cell: cells){
+                    if (cell.equals("TREE")){
+                        tree_index=i;
+                    }
+                    i++;
+                }
+            }
             if (index>1){
-                String[] cells = line.split("\t");
-                cloneIdToNewickTree.put(cells[0],cells[14]);
+                cloneIdToNewickTree.put(cells[0],cells[tree_index]);
             }
             index++;
         }

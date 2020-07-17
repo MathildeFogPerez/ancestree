@@ -195,6 +195,8 @@ public class DnamlTreeChooserFrame extends JFrame implements ActionListener {
             e.printStackTrace();
         } catch (SAXException e) {
             e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }

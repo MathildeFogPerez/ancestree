@@ -17,6 +17,7 @@ package ch.irb.ManageFastaFiles;
 
 import org.apache.log4j.Logger;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
@@ -31,8 +32,6 @@ import java.util.regex.Pattern;
  */
 public class FastaFileParser {
 
-    static Logger logger = Logger.getLogger(FastaFileParser.class);
-	static String ls = System.getProperty("line.separator");
     private HashMap<String, String> fastaIdToSequence = new HashMap<>();
     private LinkedHashMap<String, String> sameOrderFastaIdToSequence = new LinkedHashMap<>();
     private File file = null;
@@ -43,42 +42,33 @@ public class FastaFileParser {
     }
 
     private void parseFile() throws IOException {
-        ArrayList<String> sequences = new ArrayList<>();
-        Scanner scanner = new Scanner(new FileReader(file));
-        scanner.useDelimiter(">");
-        // first use a Scanner to get each fasta entry
-        while (scanner.hasNext()) {
-            int index = 0;
-            String fastaId = null;
-            String sequence = "";
-            Scanner scan = new Scanner(scanner.next());
-            scan.useDelimiter(Pattern.compile("([\n]|(\r\n))+")); //before: ls but doesnt always work!!
-            while (scan.hasNext()) {
-                String line = scan.next();
-				if (index == 0) // we have the id
-				{
-					fastaId = line;
-				} else {
-					String seqWithGaps = line.replaceAll("\\s+", "");
-					sequence += seqWithGaps; //TODO we dont remove the '-'!!! before .replaceAll("-", "")
-				}
-                index += 1;
+        BufferedReader fileReader = new BufferedReader(new FileReader(file.getPath()));
+        String line = "";
+        String fastaId=null;
+        String sequence="";
+        while ((line = fileReader.readLine()) != null) {
+            if (line.matches(">.*")){ //new entry
+                //we record the previous entry
+                if (fastaId!=null && sequence.length()>0){
+                    String seq = sequence.toUpperCase().trim();
+                    fastaIdToSequence.put(fastaId, seq);
+                    sameOrderFastaIdToSequence.put(fastaId, seq);
+                }
+                fastaId= line.replace(">","").trim();
+                //System.out.println(fastaId);
+                sequence="";
             }
-            scan.close();
-            // logger.debug("FastaId: "+fastaId+" sequence "+sequence);
+            else {
+                sequence+= line.trim();
+            }
+        }
+
+        //we store the last entry
+        if (fastaId!=null && sequence.length()>0){
             String seq = sequence.toUpperCase().trim();
             fastaIdToSequence.put(fastaId, seq);
             sameOrderFastaIdToSequence.put(fastaId, seq);
-            if (!sequences.contains(seq)) {
-                sequences.add(seq);
-            }
-			/*else {
-				logger.debug("This fasta id: "+fastaId+" has already its seq stored: "+seq);
-			}*/
         }
-        scanner.close();
-        //logger.debug("Number of fastaIds is: " + fastaIdToSequence.size());
-        //logger.debug("Number of unique sequences is: " + sequences.size());
     }
 
 

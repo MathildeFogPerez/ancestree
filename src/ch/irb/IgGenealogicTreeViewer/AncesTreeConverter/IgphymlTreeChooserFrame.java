@@ -40,13 +40,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 @SuppressWarnings("serial")
-public class IgphymlTreeChooserFrame extends JFrame implements ActionListener{
+public class IgphymlTreeChooserFrame extends JFrame implements ActionListener {
 
     private IgTreeViewerFrame igTreeViewerFrame;
     private GetSetCurrentDirectory getSetCurrentDir = new GetSetCurrentDirectory();
     private File changeoAirrFile;
-    private boolean changeoOk=false;
-    private boolean igphymlOk=false;
+    private boolean changeoOk = false;
+    private boolean igphymlOk = false;
     private File igphymlFile;
     private String cloneId;
     private String[] clonesIds;
@@ -105,7 +105,7 @@ public class IgphymlTreeChooserFrame extends JFrame implements ActionListener{
         JPanel whitePanel = new JPanel();
         whitePanel.setBackground(Color.white);
         panel.add(whitePanel, c);
-        c.gridy +=5;
+        c.gridy += 5;
         c.gridheight = 1;
         chooseIgphymlButton.setFont(font);
         chooseIgphymlButton.addActionListener(this);
@@ -118,19 +118,19 @@ public class IgphymlTreeChooserFrame extends JFrame implements ActionListener{
         c.gridy += 5;
         c.gridheight = 1;
         c.gridx = 0;
-        c.gridwidth=1;
+        c.gridwidth = 1;
         JLabel cloneIdLabel = new JLabel("Clone id to process:   ");
         panel.add(cloneIdLabel, c);
         c.gridx = 1;
-        panel.add(cloneIdLabel2,c);
-        c.gridy +=1;
+        panel.add(cloneIdLabel2, c);
+        c.gridy += 1;
         c.gridheight = 5;
-        c.gridwidth=2;
-        c.gridx=0;
+        c.gridwidth = 2;
+        c.gridx = 0;
         JPanel whitePanel2 = new JPanel();
         whitePanel2.setBackground(Color.white);
         panel.add(whitePanel2, c);
-        c.gridy +=5;
+        c.gridy += 5;
         c.gridheight = 1;
         runButton.addActionListener(this);
         // the runButton is enabled until all the fasta files are selected
@@ -153,7 +153,7 @@ public class IgphymlTreeChooserFrame extends JFrame implements ActionListener{
                 try {
                     checkValidAIRRfile();
                 } catch (Exception ex) {
-                    changeoOk=false;
+                    changeoOk = false;
                     JOptionPane.showMessageDialog(this, ex.getMessage(),
                             "File not in AIRR format or missing information", JOptionPane.ERROR_MESSAGE);
                     return;
@@ -176,21 +176,21 @@ public class IgphymlTreeChooserFrame extends JFrame implements ActionListener{
                 try {
                     checkValidIgphymlFile();
                 } catch (Exception ex) {
-                    igphymlOk=false;
+                    igphymlOk = false;
                     JOptionPane.showMessageDialog(this, ex.getMessage(),
                             "File not in IgPhyML format or missing information", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
-                if (igphymlOk){
+                if (igphymlOk) {
                     JOptionPane jop = new JOptionPane();
-                    String input = (String)jop.showInputDialog(null,
+                    String input = (String) jop.showInputDialog(null,
                             "Select the clone id to process",
                             "Clone id",
                             JOptionPane.QUESTION_MESSAGE,
                             null,
                             clonesIds,
                             clonesIds[0]);
-                    if (input==null){
+                    if (input == null) {
                         return;
                     }
                     cloneId = input.split("\\s")[0];
@@ -203,8 +203,7 @@ public class IgphymlTreeChooserFrame extends JFrame implements ActionListener{
                 // keep the directory in memory
                 getSetCurrentDir.setCurrentDirectory(fileChooser.getCurrentDirectory());
             }
-        }
-        else if (e.getSource() == runButton) {
+        } else if (e.getSource() == runButton) {
             //Finally launch the parser
             try {
                 launchParser();
@@ -215,59 +214,66 @@ public class IgphymlTreeChooserFrame extends JFrame implements ActionListener{
         }
     }
 
-    private void checkValidAIRRfile() throws Exception{
+    private void checkValidAIRRfile() throws Exception {
         BufferedReader fileReader = new BufferedReader(new FileReader(changeoAirrFile));
-        String line="";
-        int index=0;
-        String header="";
-        while ((line= fileReader.readLine())!=null){
-            if (index==0){
-                header=line;
+        String line = "";
+        int index = 0;
+        String header = "";
+        while ((line = fileReader.readLine()) != null) {
+            if (index == 0) {
+                header = line;
                 break;
             }
             index++;
         }
         fileReader.close();
         //check that we have the required field!!
-        ArrayList<String>requiredAirrFields = new ArrayList<>();
-        requiredAirrFields.add("sequence_id");requiredAirrFields.add("sequence");
-        requiredAirrFields.add("rev_comp");requiredAirrFields.add("productive");
-        requiredAirrFields.add("v_call");requiredAirrFields.add("d_call");
-        requiredAirrFields.add("j_call");requiredAirrFields.add("sequence_alignment");
-        requiredAirrFields.add("germline_alignment");requiredAirrFields.add("junction");
-        requiredAirrFields.add("junction_aa");requiredAirrFields.add("v_cigar");
-        requiredAirrFields.add("d_cigar");requiredAirrFields.add("j_cigar");
-        for (String requiredFied: requiredAirrFields){
-            if (!header.contains(requiredFied)){
-                throw new Exception("The data are not in AIRR format in '"+changeoAirrFile.getName()+"'.");
+        ArrayList<String> requiredAirrFields = new ArrayList<>();
+        requiredAirrFields.add("sequence_id");
+        requiredAirrFields.add("sequence");
+        requiredAirrFields.add("rev_comp");
+        requiredAirrFields.add("productive");
+        requiredAirrFields.add("v_call");
+        requiredAirrFields.add("d_call");
+        requiredAirrFields.add("j_call");
+        requiredAirrFields.add("sequence_alignment");
+        requiredAirrFields.add("germline_alignment");
+        requiredAirrFields.add("junction");
+        requiredAirrFields.add("junction_aa");
+        requiredAirrFields.add("v_cigar");
+        requiredAirrFields.add("d_cigar");
+        requiredAirrFields.add("j_cigar");
+        for (String requiredFied : requiredAirrFields) {
+            if (!header.contains(requiredFied)) {
+                throw new Exception("The data are not in AIRR format in '" + changeoAirrFile.getName() + "'.");
             }
         }
 
-        if (!header.contains("\tclone_id\t")){
-            throw new Exception("No clone_id field found 'in "+changeoAirrFile.getName()+"'.");
+        if (!header.contains("\tclone_id\t")) {
+            throw new Exception("No clone_id field found 'in " + changeoAirrFile.getName() + "'.");
         }
-        if (!header.contains("\tfwr1\t")){
-            throw new Exception("No fwr1 field found in '"+changeoAirrFile.getName()+"'.");
+        if (!header.contains("\tfwr1\t")) {
+            throw new Exception("No fwr1 field found in '" + changeoAirrFile.getName() + "'.");
         }
-        if (!header.contains("\tfwr2\t")){
-            throw new Exception("No fwr2 field found in '"+changeoAirrFile.getName()+"'.");
+        if (!header.contains("\tfwr2\t")) {
+            throw new Exception("No fwr2 field found in '" + changeoAirrFile.getName() + "'.");
         }
-        if (!header.contains("\tfwr3\t")){
-            throw new Exception("No fwr3 field found in '"+changeoAirrFile.getName()+"'.");
+        if (!header.contains("\tfwr3\t")) {
+            throw new Exception("No fwr3 field found in '" + changeoAirrFile.getName() + "'.");
         }
-        if (!header.contains("\tfwr4\t")){
-            throw new Exception("No fwr4 field found in '"+changeoAirrFile.getName()+"'.");
+        if (!header.contains("\tfwr4\t")) {
+            throw new Exception("No fwr4 field found in '" + changeoAirrFile.getName() + "'.");
         }
-        if (!header.contains("\tcdr1\t")){
-            throw new Exception("No cdr1 field found in '"+changeoAirrFile.getName()+"'.");
+        if (!header.contains("\tcdr1\t")) {
+            throw new Exception("No cdr1 field found in '" + changeoAirrFile.getName() + "'.");
         }
-        if (!header.contains("\tcdr2\t")){
-            throw new Exception("No cdr2 field found in '"+changeoAirrFile.getName()+"'.");
+        if (!header.contains("\tcdr2\t")) {
+            throw new Exception("No cdr2 field found in '" + changeoAirrFile.getName() + "'.");
         }
-        if (!header.contains("\tcdr3\t")){
-            throw new Exception("No cdr3 field found in '"+changeoAirrFile.getName()+"'.");
+        if (!header.contains("\tcdr3\t")) {
+            throw new Exception("No cdr3 field found in '" + changeoAirrFile.getName() + "'.");
         }
-        changeoOk=true;
+        changeoOk = true;
     }
 
     private void checkValidIgphymlFile() throws Exception {
@@ -279,47 +285,51 @@ public class IgphymlTreeChooserFrame extends JFrame implements ActionListener{
         while ((line = fileReader.readLine()) != null) {
             if (index == 0) {
                 header = line;
-            }
-            else if (index>1) { //we store the clone Ids
+            } else if (index > 1) { //we store the clone Ids
                 String[] cells = line.split("\t");
-                if (cells ==null){
-                    throw new Exception("The IgPhyML file '"+igphymlFile.getName()+"' is not a TAB file.");
+                if (cells == null) {
+                    throw new Exception("The IgPhyML file '" + igphymlFile.getName() + "' is not a TAB file.");
                 }
                 //System.out.println("We store clone id "+cells[0]);
-                cloneIdsArray.add(cells[0]+" (NSEQ= "+cells[1]+")");
+                cloneIdsArray.add(cells[0] + " (NSEQ= " + cells[1] + ")");
             }
             index++;
         }
         fileReader.close();
-        if (!header.matches("CLONE.*TREE")){
-            throw new Exception("CLONE and TREE fields are not found in the IgPhyML file '"+igphymlFile.getName()+"'.");
+        if (!header.matches("CLONE.*TREE")) {
+            throw new Exception("CLONE and TREE fields are not found in the IgPhyML file '" + igphymlFile.getName() + "'.");
         }
-        File bpFastaFile = new File(igphymlFile.getParent()+System.getProperty("file.separator")+igphymlFile.getName()
-                .replace(".tab",".fasta"));
-        if (!bpFastaFile.exists()){
-            throw new Exception("The fasta file which contains the tree intermediate sequences is not found: '"+bpFastaFile.getName()+"'." +
-                    "\n Please provide it.");
+        File bpFastaFile = new File(igphymlFile.getParent() + System.getProperty("file.separator") + igphymlFile.getName()
+                .replace(".tab", ".fasta"));
+        if (!bpFastaFile.exists()) {
+            //try with the new version
+            if (!bpFastaFile.exists()) {
+                throw new Exception("The fasta file which contains the tree intermediate sequences is not found: '" + bpFastaFile.getName() + "'." +
+                        "\n Please provide it or change the name accordingly.");
+            }
         }
         clonesIds = new String[cloneIdsArray.size()];
-        int i=0;
-        for (String clone: cloneIdsArray){
+        int i = 0;
+        for (String clone : cloneIdsArray) {
             clonesIds[i] = clone;
             i++;
         }
         //System.out.println("We have clones ids "+clonesIds);
-        igphymlOk=true;
+        igphymlOk = true;
     }
 
 
     private void launchParser() throws FastaFormatException {
         try {
             @SuppressWarnings("unused")
-            InputParser parser = new InputParser(changeoAirrFile,igphymlFile,cloneId, igTreeViewerFrame);
+            InputParser parser = new InputParser(changeoAirrFile, igphymlFile, cloneId, igTreeViewerFrame);
         } catch (IOException e) {
             e.printStackTrace();
         } catch (JAXBException e) {
             e.printStackTrace();
         } catch (SAXException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
