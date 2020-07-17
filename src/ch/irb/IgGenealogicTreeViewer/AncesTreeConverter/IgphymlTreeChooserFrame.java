@@ -300,7 +300,7 @@ public class IgphymlTreeChooserFrame extends JFrame implements ActionListener {
             throw new Exception("CLONE and TREE fields are not found in the IgPhyML file '" + igphymlFile.getName() + "'.");
         }
         File bpFastaFile = new File(igphymlFile.getParent() + System.getProperty("file.separator") + igphymlFile.getName()
-                .replace(".tab", ".fasta"));
+                .replace(".tab", "_hlp_asr.fasta"));
         if (!bpFastaFile.exists()) {
             //try with the new version
             if (!bpFastaFile.exists()) {

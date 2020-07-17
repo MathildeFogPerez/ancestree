@@ -213,7 +213,7 @@ public class InputParser {
         this.airrInputFile = airrInputFile;
         this.igPhyMLfile = igPhyMLfile;
         igPhyMLfastafile = new File(igPhyMLfile.getParent() + System.getProperty("file.separator") + igPhyMLfile.getName()
-                .replace(".tab", ".fasta"));
+                .replace(".tab", "_hlp_asr.fasta"));
         //logger.debug("CLONE ID: "+cloneId);
         // //logger.debug("Parse file " + dnamlOutputFile.getName());
         // We create a project by taking the name of the airr file + the cloneId
@@ -876,7 +876,7 @@ public class InputParser {
         if (sequence ==null ){
             JOptionPane.showMessageDialog(new JFrame(),"ERROR: no sequence found in the AIRR file or in the fasta file for sequence_id '"+id+"'", "No sequence found",
                     JOptionPane.ERROR_MESSAGE);
-            throw new Exception("\"ERROR: no sequence found in the AIRR file or fasta file for sequence_id '\"+id+\"'\"");
+            throw new Exception("ERROR: no sequence found in the AIRR file or in the fasta file for sequence_id '"+id+"'");
         }
         Node node = null;
         // This is the case where a BP has the same sequence than an Ig
