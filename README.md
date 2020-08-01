@@ -12,7 +12,7 @@ It only needs Java Runtime Environment (JRE) 12 or higher (https://www.oracle.co
 #     
    
 - **Launch AncesTree GUI.**
-    After downloading AncesTree.jar from [release page] (https://github.com/MathildeFogPerez/ancestree/releases), in a terminal:
+    After downloading AncesTree.jar from [release page](https://github.com/MathildeFogPerez/ancestree/releases), in a terminal:
     
        ```
        java -jar AncesTree.jar
