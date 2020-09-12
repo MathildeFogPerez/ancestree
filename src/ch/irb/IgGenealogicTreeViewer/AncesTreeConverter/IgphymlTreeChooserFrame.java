@@ -37,7 +37,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.*;
 
 @SuppressWarnings("serial")
 public class IgphymlTreeChooserFrame extends JFrame implements ActionListener {
@@ -278,6 +278,8 @@ public class IgphymlTreeChooserFrame extends JFrame implements ActionListener {
 
     private void checkValidIgphymlFile() throws Exception {
         ArrayList<String> cloneIdsArray = new ArrayList<>();
+        //The cloneIds list is sorted by size, we want to sort it by name too
+        TreeMap<Integer, ArrayList<String>> sizeToCloneIds = new TreeMap<>();
         BufferedReader fileReader = new BufferedReader(new FileReader(igphymlFile));
         String line = "";
         int index = 0;
@@ -292,6 +294,13 @@ public class IgphymlTreeChooserFrame extends JFrame implements ActionListener {
                 }
                 //System.out.println("We store clone id "+cells[0]);
                 cloneIdsArray.add(cells[0] + " (NSEQ= " + cells[1] + ")");
+                ArrayList<String> cloneIds= new ArrayList<>();
+                int size= Integer.parseInt(cells[1]);
+                if (sizeToCloneIds.containsKey(size)){
+                    cloneIds= sizeToCloneIds.get(size);
+                }
+                cloneIds.add(cells[0] + " (NSEQ= " + cells[1] + ")");
+                sizeToCloneIds.put(size,cloneIds);
             }
             index++;
         }
@@ -308,11 +317,31 @@ public class IgphymlTreeChooserFrame extends JFrame implements ActionListener {
                         "\n Please provide it or change the name accordingly.");
             }
         }
+
+        //The cloneIds list is sorted by size, we want to sort it by name too
+        TreeMap<Integer,ArrayList<String>>sortedSizeToCloneIds = new TreeMap<>(Collections.reverseOrder());
+        for (Integer size: sizeToCloneIds.keySet()){
+            ArrayList<String> sortedCloneIds = sizeToCloneIds.get(size);
+            Collections.sort(sortedCloneIds, new Comparator<String>() {
+                @Override
+                public int compare(String o1, String o2) {
+                    Integer numb1= Integer.valueOf(o1.split(" ")[0]);
+                    Integer numb2= Integer.valueOf(o2.split(" ")[0]);
+                    return numb2.compareTo(numb1);
+                }
+            });
+            sortedSizeToCloneIds.put(size,sortedCloneIds);
+        }
+
+
         clonesIds = new String[cloneIdsArray.size()];
         int i = 0;
-        for (String clone : cloneIdsArray) {
-            clonesIds[i] = clone;
-            i++;
+        for (Integer size:sortedSizeToCloneIds.keySet()) {
+            for (String clone: sortedSizeToCloneIds.get(size)){
+            //for (String clone : cloneIdsArray) {
+                clonesIds[i] = clone;
+                i++;
+            }
         }
         //System.out.println("We have clones ids "+clonesIds);
         igphymlOk = true;

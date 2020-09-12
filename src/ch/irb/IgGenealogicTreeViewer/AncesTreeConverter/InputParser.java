@@ -42,6 +42,8 @@ import javax.xml.bind.annotation.XmlTransient;
 import java.awt.*;
 import java.io.*;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @XmlRootElement(namespace = "ch.irb.IgGenealogicTreeMaker")
 public class InputParser {
@@ -870,13 +872,28 @@ public class InputParser {
     }
 
     private Node processNode(String id, boolean isRoot) throws Exception {
-        // logger.info("Process node: " + id);
+        //System.out.println("Process node: " + id);
         String sequence = idToSequence.get(id);
         //bug found from IgPhyML
         if (sequence ==null ){
-            JOptionPane.showMessageDialog(new JFrame(),"ERROR: no sequence found in the AIRR file or in the fasta file for sequence_id '"+id+"'", "No sequence found",
-                    JOptionPane.ERROR_MESSAGE);
-            throw new Exception("ERROR: no sequence found in the AIRR file or in the fasta file for sequence_id '"+id+"'");
+            boolean addMissingId=false;
+            //check that it is not the case where you have seqId_1 and the seq is identical to the seqId
+            if (id.matches("(.*)_1")){
+                String idToFound = id.substring(0,id.length()-2);
+                for (String id2:idToSequence.keySet()){
+                    if (id2.equals(idToFound)){
+                        idToSequence.put(id,idToSequence.get(id2));
+                        //System.out.println("Find "+id2+" for "+id);
+                        addMissingId=true;
+                        break;
+                    }
+                }
+            }
+            if (!addMissingId) {
+                JOptionPane.showMessageDialog(new JFrame(), "ERROR: no sequence found in the AIRR file or in the fasta file for sequence_id '" + id + "'", "No sequence found",
+                        JOptionPane.ERROR_MESSAGE);
+                throw new Exception("ERROR: no sequence found in the AIRR file or in the fasta file for sequence_id '" + id + "'");
+            }
         }
         Node node = null;
         // This is the case where a BP has the same sequence than an Ig

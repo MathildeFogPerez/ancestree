@@ -145,7 +145,7 @@ public class NodeObject {
     }
 
     public void setProteinSequence() {
-        //logger.debug("Protein sequence for " + nodeId + " is: " + proteinSequence);
+        //System.out.println("Protein sequence for " + nodeId + " is: " + proteinSequence);
         Translator translator = new Translator(sequence, isDNA);
         proteinSequence = translator.getProteinSequence();
         // logger.debug("Protein sequence for " + nodeId + " is: " + proteinSequence);

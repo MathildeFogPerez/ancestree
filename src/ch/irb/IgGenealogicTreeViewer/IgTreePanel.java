@@ -71,7 +71,7 @@ public class IgTreePanel extends JPanel {
     private boolean everyThingIsGrey = false;
     private int widthOfNodeShape = 116;
     private int heightOfNodeShape = 50;
-    private int fontSizeNode = 20;
+    private int fontSizeNode = 11;//20
     private int fontSizeMutationsNumber = 20;
     private boolean smaller = false;
     private File xmlFile;
@@ -113,7 +113,7 @@ public class IgTreePanel extends JPanel {
             new Color(76,0,153)));
 
     public IgTreePanel(IgTreeReader igTreeReader, GetSetCurrentDirectory getSetCurrentDir) {
-        logger.debug("IgTreePanel...");
+        //logger.debug("IgTreePanel...");
         this.setBackground(Color.white);
         this.getSetCurrentDir = getSetCurrentDir;
         // Here we get the path of the project the user loaded
@@ -585,7 +585,7 @@ public class IgTreePanel extends JPanel {
             smaller = true;
             heightOfNodeShape = 40;
             widthOfNodeShape = 116; // 90
-            fontSizeNode = 19; // 20
+            //fontSizeNode = 19; // 20
             fontSizeMutationsNumber = 18;
         }
         for (NodeGraph node : allNodeGraphs) {
@@ -632,7 +632,7 @@ public class IgTreePanel extends JPanel {
             }
         }
         this.minLevelForLastNode = minLevelForLastNode;
-        logger.debug("Mini level for last node  is " + minLevelForLastNode);
+        //logger.debug("Mini level for last node  is " + minLevelForLastNode);
     }
 
     public ColorByYear getColorByYear() {
@@ -818,26 +818,29 @@ public class IgTreePanel extends JPanel {
         String nodeIdToPrint = node.getNodeId();
         // here we made a method to write exactly in the middle
         Font fonte = new Font("Arial", Font.PLAIN, fontSizeNode);
-        if (smaller) {
-            fonte = new Font("Arial", Font.PLAIN, fontSizeNode); // "Calibri"
+        int div =2;
+        if (nodeIdToPrint.matches("BP\\d+")||nodeIdToPrint.equals("UCA")){
+            fonte = new Font("Arial", Font.PLAIN, 19);
+            div=1;
         }
         g.setFont(fonte);
+        //System.out.println("FONT "+fonte.getSize());
         FontRenderContext frc = g.getFontMetrics().getFontRenderContext();
         Rectangle2D rect = fonte.getStringBounds(nodeIdToPrint, frc);
         int xString = (int) (x + (widthOfNodeShape / 2) - (rect.getWidth() / 2));
-        float mult = 1.15f;// 1.3
+        float mult = 1.15f;// 1.15
         if (smaller) {
             mult = 1.25f;// 1.25
         }
         if (EC50 == null && (comment == null || (comment != null && !node.isShowComment1()))) {
-            int yString = (int) (y + (mult * heightOfNodeShape) - rect.getHeight());
+            int yString = (int) (y + (mult * heightOfNodeShape) - (rect.getHeight()*div));
             g.drawString(nodeIdToPrint, xString, yString);
         }
         // Print the EC 50 and comment
         else {
-            mult = 1.5f;// 1.3
+            mult = 1.5f;// 1.5
             if (smaller) {
-                mult = 1.4f;
+                mult = 1.4f; //1.4
             }
             // If there is EC50 and comment we write the node Id a bit upper
             float toSubs = 0;
@@ -847,13 +850,13 @@ public class IgTreePanel extends JPanel {
             // we write the NodeId
             int yString = (int) (y + (mult * heightOfNodeShape) - rect.getHeight() - toSubs);
             g.drawString(nodeIdToPrint, xString, yString);
-            int toSubstracte = 6;
-            int toSubsForSmaller = 12;
-            int toSubsForComment = 10;
+            int toSubstracte =0;// 6;
+            int toSubsForSmaller = 0;//12;
+            int toSubsForComment = 0;//10;
             if (smaller) {
-                toSubstracte = 4;
-                toSubsForSmaller = 8;
-                toSubsForComment = 7;
+                toSubstracte = 0;//4;
+                toSubsForSmaller = 0;//8;
+                toSubsForComment = 0;//7;
             }
             int fontArg = Font.PLAIN;
             Font fon = new Font("Calibri", fontArg, (fontSizeNode - toSubstracte));
@@ -1356,7 +1359,7 @@ public class IgTreePanel extends JPanel {
                     readsMx = node.getReads();
                 }
             }
-            logger.debug("Read max is " + readsMx);
+            //logger.debug("Read max is " + readsMx);
             for (NodeGraph node : allNodeGraphs) {
                 if (node.isRoot()) {
                     node.setColor(rootColor);

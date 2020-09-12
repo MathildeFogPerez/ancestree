@@ -40,19 +40,15 @@ public class Translator {
             protSequence = dnaSequence;
         } else {
             setCodonsTable();
-            try {
+            //bug fixed the 12.09.20
+            if (dnaSequence != null) {
                 translate();
-            } catch (Exception e) {
-                e.printStackTrace();
-                JOptionPane.showMessageDialog(new JFrame(), e.getMessage(), "Translation warning",
-                        JOptionPane.WARNING_MESSAGE);
             }
         }
     }
 
-    private void translate() throws Exception {
-        char[] nuc = new char[dnaSequence.length()];
-        nuc = dnaSequence.toCharArray();
+    private void translate(){
+        char[] nuc = dnaSequence.toCharArray();
         String codon = "";
         int nucleotide = 0;
         for (int i = 0; i < nuc.length; i++) {

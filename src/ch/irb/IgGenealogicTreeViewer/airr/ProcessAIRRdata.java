@@ -49,7 +49,8 @@ public class ProcessAIRRdata {
         TsvAirrParser.AIRRobject refAirrObj= null;
             for (TsvAirrParser.AIRRobject airRobject : airRobjects) {
                     String seq = airRobject.getValue("sequence_alignment");
-                    String seqWithoutDot = seq.replaceAll("\\.", "");
+                    //Fixed the 12.09.20 by removing N
+                    String seqWithoutDot = seq.replaceAll("\\.", "").replaceAll("N","");
                     if (seqWithoutDot.length() > longestSeq){
                         longestSeq = seqWithoutDot.length();
                         refAirrObj = airRobject;

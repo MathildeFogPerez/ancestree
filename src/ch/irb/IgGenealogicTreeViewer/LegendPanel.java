@@ -306,7 +306,7 @@ public class LegendPanel extends JPanel {
     }
 
     private class SearchPanel {
-        private JTextArea textarea = new JTextArea(1, 7);
+        private JTextArea textarea = new JTextArea(1, 10);
 
         public SearchPanel() {
         }
@@ -329,7 +329,7 @@ public class LegendPanel extends JPanel {
                 }
             };
             textarea.setEditable(true);
-            textarea.setFont(new Font("Arial", Font.PLAIN, 14));
+            textarea.setFont(new Font("Arial", Font.PLAIN, 12));
             JPopupMenu jPopupMenu = new JPopupMenu();
             jPopupMenu.add(new CopyAction(textarea, "Copy", "Copy", KeyEvent.VK_C));
             jPopupMenu.add(new PasteAction(textarea, "Paste", "Paste", KeyEvent.VK_V));
