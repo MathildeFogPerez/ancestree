@@ -394,6 +394,8 @@ public class InputParser {
         String firstSeq = entry.getValue();
         int i = 0;
         ArrayList<Integer> pointsToRemove = new ArrayList<>();
+        //fixed the 29.01.21 if all sequences have their first nuc missing it does not work (Jun data!)
+        boolean begin=true;
         for (char n : firstSeq.toCharArray()) {
             if (n == '.') {
                 boolean remove = true;
@@ -403,9 +405,12 @@ public class InputParser {
                         break;
                     }
                 }
-                if (remove) {
+                if (remove && !begin) {
                     pointsToRemove.add(i);
                 }
+            }
+            else {
+                begin=false;
             }
             i++;
         }
@@ -740,7 +745,7 @@ public class InputParser {
                     if (!otherNode.getNodeId().equals(node.getNodeId())) {
                         String seq = idToSequence.get(otherNode.getNodeId());
                         if (seq.equals(sequence)) {
-                            logger.warn("!!!!!! By replacing a R/Y nuc we got the same sequence for " + node.getNodeId()
+                            logger.warn("!!!!!! By replacing a UPAC nuc we got the same sequence for " + node.getNodeId()
                                     + " and " + otherNode.getNodeId());
                             // we remove this BP if its parent or its child has
                             // the same sequence
