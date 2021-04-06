@@ -326,7 +326,14 @@ public class InputParser {
         //check that the cloneId exists in the AIRR file
         tsvAirrParser = new TsvAirrParser(airrInputFile, cloneId, nodeNames);
         if (!tsvAirrParser.getClonalFamToAIIRobjs().containsKey(cloneId)) {
-            error = "There is no clone id " + cloneId + " in the change-o airr format file!";
+            if (!tsvAirrParser.isCloneIdPresent()) {
+                error = "There is no clone id " + cloneId + " in the change-o airr format file!";
+            }
+            else {
+                error = "The clone id " + cloneId + " was found in the change-o airr format file but the sequence_ids " +
+                        "do not fit with the ones in the related newick tree (Igphyml file)! " +
+                        "\nPlease change sequence_ids accordingly.";
+            }
         }
 
         return error;

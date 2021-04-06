@@ -32,6 +32,8 @@ import java.util.*;
  */
 public class TsvAirrParser {
 
+    private boolean isCloneIdPresent=true;
+
     public static void main(String[] args) {
         try {
             TsvAirrParser tsvAirrFormatParser = new TsvAirrParser(new File(args[0]), "1", null);
@@ -43,6 +45,7 @@ public class TsvAirrParser {
     private TreeMap<String, ArrayList<AIRRobject>> clonalFamToAIIRobjs = new TreeMap<>();
 
     public TsvAirrParser(File tsvAirrFile, String cloneId, HashSet<String> nodeNames) throws IOException {
+        //System.out.println("processing clone_id "+cloneId);
         BufferedReader fileReader = new BufferedReader(new FileReader(tsvAirrFile));
         String line = "";
         int index = 0;
@@ -62,6 +65,7 @@ public class TsvAirrParser {
             } else {
                 //we store only the sequences belonging to the cloneId and the nodes in the newick tree(to go faster)
                 if (cells[cloneIdIndex].equals(cloneId)) {
+                    isCloneIdPresent=true;
                     if (nodeNames.contains(cells[0])) {
                         LinkedHashMap<String, String> airrKeyToValue = new LinkedHashMap<>();
                         int j = 0;
@@ -78,6 +82,8 @@ public class TsvAirrParser {
                         }
                         airRobjects.add(airRobject);
                         clonalFamToAIIRobjs.put(clone_id, airRobjects);
+                    }else{
+                      //  System.out.println("This node name is not in the igphyml tree "+cells[0]);
                     }
                 }
             }
@@ -102,6 +108,9 @@ public class TsvAirrParser {
         return airRobjects;
     }
 
+    public boolean isCloneIdPresent() {
+        return isCloneIdPresent;
+    }
 
     public class AIRRobject {
         private String sequence_id;
