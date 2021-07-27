@@ -73,4 +73,4 @@ PLoS Comput Biol. 2020 Jul 10;16(7):e1007731. [DOI: 10.1371/journal.pcbi.1007731
 
 ### CONTACT ###
 
-mathilde.perez@irb.usi.ch
+mathilde.foglierini-perez@chuv.ch
