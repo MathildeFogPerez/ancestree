@@ -301,6 +301,7 @@ public class IgphymlTreeChooserFrame extends JFrame implements ActionListener {
                 }
                 cloneIds.add(cells[0] + " (NSEQ= " + cells[1] + ")");
                 sizeToCloneIds.put(size,cloneIds);
+                //System.out.println(size+": "+cloneIds);
             }
             index++;
         }
@@ -317,7 +318,7 @@ public class IgphymlTreeChooserFrame extends JFrame implements ActionListener {
                         "\n Please provide it or change the name accordingly.");
             }
         }
-
+        //System.out.println("go there");
         //The cloneIds list is sorted by size, we want to sort it by name too
         TreeMap<Integer,ArrayList<String>>sortedSizeToCloneIds = new TreeMap<>(Collections.reverseOrder());
         for (Integer size: sizeToCloneIds.keySet()){
@@ -325,15 +326,16 @@ public class IgphymlTreeChooserFrame extends JFrame implements ActionListener {
             Collections.sort(sortedCloneIds, new Comparator<String>() {
                 @Override
                 public int compare(String o1, String o2) {
-                    Integer numb1= Integer.valueOf(o1.split(" ")[0]);
-                    Integer numb2= Integer.valueOf(o2.split(" ")[0]);
+                    //Bug fix the 26.11.21, need to change integer into string because of 10X data and the light_cluster.py function!
+                    String numb1= o1.split(" ")[0];
+                    String numb2= o2.split(" ")[0];
                     return numb2.compareTo(numb1);
                 }
             });
             sortedSizeToCloneIds.put(size,sortedCloneIds);
         }
 
-
+        //System.out.println("sorted "+sortedSizeToCloneIds.size());
         clonesIds = new String[cloneIdsArray.size()];
         int i = 0;
         for (Integer size:sortedSizeToCloneIds.keySet()) {
@@ -343,7 +345,6 @@ public class IgphymlTreeChooserFrame extends JFrame implements ActionListener {
                 i++;
             }
         }
-        //System.out.println("We have clones ids "+clonesIds);
         igphymlOk = true;
     }
 
