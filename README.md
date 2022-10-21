@@ -6,7 +6,7 @@ AncesTree is a Graphic User Interface (GUI) that displays immunoglobulin lineage
 AncesTree is distributed as a cross-platform application (jar file) that can run under Windows, Linux and Mac OS. 
 
 It only needs Java Runtime Environment (JRE) 12, 13, 14 or 15 (https://www.oracle.com/java/technologies/javase/jdk15-archive-downloads.html).
-**!! WARNING it does NOT work with latest JAVA JRE 16 !!**
+**!! WARNING it does NOT work with latest JAVA JRE 19 !!**
 
 ### RUNNING AncesTree ###
    
